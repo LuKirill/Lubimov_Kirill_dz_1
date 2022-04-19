@@ -76,4 +76,4 @@ for i in range(len(cubes3)):
     if sum(cubes3[i]) % 7 == 0:
         sum3 += i
 print(sum3)
-print(cubes3) # что-то не получается
+print(cubes3)# что-то не получается
