@@ -9,6 +9,7 @@
 
 # c) * Решить задачу под пунктом b, не создавая новый список.
 
+# 1й вариант решения:
 # Создаем список из кубов нечетных чисел от 1 до 1000
 cubes = []
 for num in range(1, 1000, 2):
@@ -53,27 +54,26 @@ for seven in sums2:
         division_by_seven2.append(seven)
 print("2е деление на 7: ", division_by_seven2)
 
-#c)*
-cubes3 = []
-for num in range(1, 1000, 2):
-    cubes3.append(num ** 3)
-print("кубы: ", cubes3)
-print(id(cubes3))
+# 2й вариант решения(правильный):
+sum1 = 0
 
-for i in range(len(cubes3)):
-    cubes3[i] += 17
-print(cubes3)
-print(id(cubes3))
+def sum(cube):
+    num_sum = 0
+    while cube != 0:
+        num_sum += cube % 10
+        cube = cube // 10
+    return num_sum
 
-sum3 = 0
-def sum(cube3):
-    s3 = 0
-    while cube3 != 0:
-        s3 += cube3 % 10
-        cube3 = cube3 // 10
-    print(s3)
-for i in range(len(cubes3)):
-    if sum(cubes3[i]) % 7 == 0:
-        sum3 += i
-print(sum3)
-print(cubes3)# что-то не получается
+cubes = (i**3 for i in range(1, 1000, 2))
+cubes = list(cubes)
+print(cubes)
+
+for i in range(len(cubes)):
+    if sum(cubes[i]) % 7 == 0:
+        sum1 += cubes[i]
+print(sum1)
+
+for i in range(len(cubes)):
+    if sum(cubes[i] + 17) % 7 == 0:
+        sum1 += cubes[i] + 17
+print(sum1)
