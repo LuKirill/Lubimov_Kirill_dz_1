@@ -9,43 +9,84 @@
 #
 # c) * Решить задачу под пунктом b, не создавая новый список.
 
-# Создаем список из кубов нечетных чисел от 1 до 1000
-cubes = []
-i = [0]
-for num in range(1, 1000, 2):
-    cubes.append(num ** 3)
-print(cubes)
-# Создаем список из сумм цифр каждого числа из списка cubes
-# сначала создал цикл while для суммирования цифр для 1 числа, затем добавил цикл for и сделал перебор чисел из списка cubes.
-sums = []
-for cube in cubes:
-    int(cube) == cube # перевел str -> int
-    sum = 0
-    while (cube != 0):
-        sum = sum + cube % 10
+sum1 = 0
+
+def sum(cube):
+    num_sum = 0
+    while cube != 0:
+        num_sum += cube % 10
         cube = cube // 10
-    str(sum) == sum # перевел int -> str
-    sums.append(sum) # вернул получившуюся сумму в список sum для каждого элемента
-print(sums)
-# перечисляем числа, которые делятся на 7 без остатка и отправляем их в список division_by_seven
-division_by_seven = []
-for seven in sums:
-    if seven % 7 == 0:
-        #seven = seven + 17
-        division_by_seven.append(seven)
-print(division_by_seven)
-# создадим список, где к каждому числу из предыдущего списка 7
-list_plus_seventeen = []
-for element in division_by_seven:
-    element = element + 17
-    list_plus_seventeen.append(element)
-print(list_plus_seventeen)
-# решить предыдущую задачу не назначая новый список
-# добавим строчку seven = seven + 17 в преддыдущую задачу
+    return num_sum
+
+cubes = (i**3 for i in range(1, 1000, 2))
+cubes = list(cubes)
+print(cubes)
+
+for i in range(len(cubes)):
+    if sum(cubes[i]) % 7 == 0:
+        sum1 += cubes[i]
+print(sum1)
+
+for i in range(len(cubes)):
+    if sum(cubes[i] + 17) % 7 == 0:
+        sum1 += cubes[i] + 17
+print(sum1)
 
 
 
+# #Создаем список из кубов нечетных чисел от 1 до 1000
+# cubes = []
+# for num in range(1, 1000, 2):
+#     cubes.append(num ** 3)
+# print("кубы: ", cubes)
+#
+# # а) Создаем список из сумм цифр каждого числа из списка cubes
+# # сначала создал цикл while для суммирования цифр для 1 числа, затем добавил цикл for и сделал перебор чисел из списка cubes.
+# sums = []
+# for cube in cubes:
+#     sum = 0
+#     while cube != 0:
+#         sum += cube % 10
+#         cube = cube // 10
+#     sums.append(sum) # вернул получившуюся сумму в список sum для каждого элемента
+# print("суммы чисел: ", sums)
+#
+# # перечисляем числа, которые делятся на 7 без остатка и отправляем их в список division_by_seven
+# division_by_seven = []
+# for seven in sums:
+#     if seven % 7 == 0:
+#         #seven = seven + 17
+#         division_by_seven.append(seven)
+# print("1е деление на 7: ", division_by_seven)
+#
+# # Складываем числа из списка division_by_seven
+# a = 0
+# for i in division_by_seven:
+#     a += i
+# print(a)
+#
+# # b)
+# for i in range(len(cubes)):
+#     cubes[i] += 17
+# # print("кубы + 17: ", cubes)
 
-
-
-
+# sums2 = []
+# for cube in cubes:
+#     sum = 0
+#     while cube != 0:
+#         sum += cube % 10
+#         cube = cube // 10
+#     sums2.append(sum)
+# # print("суммы чисел: ", sums2)
+#
+# division_by_seven2 = []
+# for seven in sums2:
+#     if seven % 7 == 0:
+#         division_by_seven2.append(seven)
+# # print("2е деление на 7: ", division_by_seven2)
+#
+# # Складываем числа из списка division_by_seven
+# b = 0
+# for n in division_by_seven2:
+#     b += n
+# print(b)
